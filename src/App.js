@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import keydown from 'react-keydown';
 
 import './App.css';
 
@@ -59,12 +60,20 @@ class App extends Component {
     }
     /*Bind functions*/
     this.audioPlay=this.audioPlay.bind(this);
+    this.testPress=this.testPress.bind(this);
+
+
   }
 
+
+  testPress =(event)=>{
+    console.log("This button was presses")
+  }
   audioPlay=(e)=>{
     console.log(e.target.id)
     //console.log(bankOne[0].url)
-
+    let node=document.getElementById('display');
+    console.log(node);
     let audio;
     switch(e.target.id){
 
@@ -72,46 +81,55 @@ class App extends Component {
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Heater-1</h1>'
         break;
       case 'W':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Heater-2</h1>'
         break;
       case 'E':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Heater-3</h1>'
         break;
       case 'A':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Heater-4</h1>'
         break;
       case 'S':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Clap</h1>'
         break;
       case 'D':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Open-HH</h1>'
         break;
       case 'Z':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Kick-n-Hat</h1>'
         break;
       case 'X':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Kick</h1>'
         break;
       case 'C':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3')
         audio.type='audio/mp3';
         audio.play()
+        node.innerHTML='<h1>Closed-HH</h1>'
         break;
     }
 /*
@@ -127,24 +145,60 @@ class App extends Component {
 
         <div id="display">
         </div>
-        <div className='container'>
-          <div className='drum-pad' id='Q' onClick={(e) =>this.audioPlay(e)}>Q
+        <div className='container' >
+          <div tabIndex={0}
+          className='drum-pad'
+          id='Q'
+          onClick={(e) =>this.audioPlay(e)}
+          onKeyDown={event => this.audioPlay(event)}>Q</div>
+
+          <div tabIndex={0}
+          className='drum-pad'
+          id='W'
+          onClick={(e) =>this.audioPlay(e)}
+          onKeyDown={event => this.audioPlay(event)}>W
           </div>
-          <div className='drum-pad' id='W' onClick={(e) =>this.audioPlay(e)}>W
+          <div tabIndex={0}
+           className='drum-pad'
+           id='E'
+           onClick={(e) =>this.audioPlay(e)}
+           onKeyDown={event => this.audioPlay(event)}>E
           </div>
-          <div className='drum-pad' id='E' onClick={(e) =>this.audioPlay(e)}>E
+          <div tabIndex={0}
+          className='drum-pad'
+          id='A'
+          onClick={(e) =>this.audioPlay(e)}
+          onKeyDown={event => this.audioPlay(event)}>A
           </div>
-          <div className='drum-pad' id='A' onClick={(e) =>this.audioPlay(e)}>A
+          <div tabIndex={0}
+          className='drum-pad'
+          id='S'
+          onClick={(e) =>this.audioPlay(e)}
+          onKeyDown={event => this.audioPlay(event)}>S
           </div>
-          <div className='drum-pad' id='S' onClick={(e) =>this.audioPlay(e)}>S
+          <div tabIndex={0}
+          className='drum-pad'
+          id='D'
+          onClick={(e) =>this.audioPlay(e)}
+          onKeyDown={event => this.audioPlay(event)}>D
           </div>
-          <div className='drum-pad' id='D' onClick={(e) =>this.audioPlay(e)}>D
+          <div tabIndex={0}
+          className='drum-pad'
+          id='Z'
+          onClick={(e) =>this.audioPlay(e)}
+          onKeyDown={event => this.audioPlay(event)}>Z
           </div>
-          <div className='drum-pad' id='Z' onClick={(e) =>this.audioPlay(e)}>Z
+          <div tabIndex={0}
+          className='drum-pad'
+          id='X'
+          onClick={(e) =>this.audioPlay(e)}
+          onKeyDown={event => this.audioPlay(event)}>X
           </div>
-          <div className='drum-pad' id='X' onClick={(e) =>this.audioPlay(e)}>X
-          </div>
-          <div className='drum-pad' id='C' onClick={(e) =>this.audioPlay(e)}>C
+          <div tabIndex={0}
+          className='drum-pad'
+          id='C'
+          onClick={(e) =>this.audioPlay(e)}
+          onKeyDown={event => this.audioPlay(event)}>C
           </div>
         </div>
 
