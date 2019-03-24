@@ -3,7 +3,8 @@ import keydown from 'react-keydown';
 
 import './App.css';
 
-const bankOne = [{
+const bankOne = [
+  {
     keyCode: 81,
     keyTrigger: 'Q',
     id: 'Heater-1',
@@ -65,6 +66,10 @@ class App extends Component {
 
   }
 
+  componentWillMount=(e)=>{
+   document.addEventListener("keydown", this.audioPlay.bind(this))
+   ;
+ }
 
   testPress =(event)=>{
     console.log("This button was presses")
@@ -73,9 +78,9 @@ class App extends Component {
     console.log(e.target.id)
     //console.log(bankOne[0].url)
     let node=document.getElementById('display');
-    console.log(node);
+    //console.log(e.key.toUpperCase());e
     let audio;
-    switch(e.target.id){
+    switch(e.target.id || e.key.toUpperCase()){
 
       case 'Q':
         audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3')
@@ -137,71 +142,77 @@ class App extends Component {
     audio.type='audio/mp3';
     audio.play()*/
   }
+
+
   render() {
 
 
     return (
+
+
       <div id='drum-machine'>
 
-        <div id="display">
-        </div>
+
         <div className='container' >
-          <div tabIndex={0}
+          
+          <div
           className='drum-pad'
           id='Q'
-          onClick={(e) =>this.audioPlay(e)}
-          onKeyDown={event => this.audioPlay(event)}>Q</div>
+          onClick={(e) =>this.audioPlay(e)}>Q</div>
 
-          <div tabIndex={0}
+          <div
           className='drum-pad'
           id='W'
           onClick={(e) =>this.audioPlay(e)}
-          onKeyDown={event => this.audioPlay(event)}>W
+          >W
           </div>
-          <div tabIndex={0}
+          <div
            className='drum-pad'
            id='E'
            onClick={(e) =>this.audioPlay(e)}
-           onKeyDown={event => this.audioPlay(event)}>E
+           >E
           </div>
-          <div tabIndex={0}
+          <div
           className='drum-pad'
           id='A'
           onClick={(e) =>this.audioPlay(e)}
-          onKeyDown={event => this.audioPlay(event)}>A
+          >A
           </div>
-          <div tabIndex={0}
+          <div
           className='drum-pad'
           id='S'
           onClick={(e) =>this.audioPlay(e)}
-          onKeyDown={event => this.audioPlay(event)}>S
+          >S
           </div>
-          <div tabIndex={0}
+          <div
           className='drum-pad'
           id='D'
           onClick={(e) =>this.audioPlay(e)}
-          onKeyDown={event => this.audioPlay(event)}>D
+          >D
           </div>
-          <div tabIndex={0}
+          <div
           className='drum-pad'
           id='Z'
           onClick={(e) =>this.audioPlay(e)}
-          onKeyDown={event => this.audioPlay(event)}>Z
+          >Z
           </div>
-          <div tabIndex={0}
+          <div
           className='drum-pad'
           id='X'
           onClick={(e) =>this.audioPlay(e)}
-          onKeyDown={event => this.audioPlay(event)}>X
+        >X
           </div>
-          <div tabIndex={0}
+          <div
           className='drum-pad'
           id='C'
           onClick={(e) =>this.audioPlay(e)}
-          onKeyDown={event => this.audioPlay(event)}>C
+          >C
           </div>
-        </div>
 
+        </div>
+        <div id="display">
+
+        </div>
       </div>
     );
   }

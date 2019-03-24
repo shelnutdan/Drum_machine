@@ -1,3 +1,17 @@
+
+#drum-machine{
+  display:flex;
+  flex-direction: row;
+  width:100%;
+  border-radius: 5%;
+}
+
+.drum-pad{
+  background-color: grey;
+  color:black;
+  text-align: center;
+  padding: 20px;
+}
 .container{
   display: grid;
   justify-content: center;
@@ -5,8 +19,11 @@
   grid-template-rows: repeat(3,1fr);
   background-color: blue;
   grid-gap: 5px;
+  width: 70%;
 }
-.drum-pad{
-  background-color: grey;
-  color:black;
+#display{
+  border: solid black 1px;
+  width:50%;
+  justify-content: center;
+  text-align: center;
 }
