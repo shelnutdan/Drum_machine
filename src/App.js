@@ -57,90 +57,28 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state={
-
+      display:""
     }
     /*Bind functions*/
     this.audioPlay=this.audioPlay.bind(this);
-    this.testPress=this.testPress.bind(this);
-
-
   }
-
   componentWillMount=(e)=>{
    document.addEventListener("keydown", this.audioPlay.bind(this))
    ;
  }
 
-  testPress =(event)=>{
-    console.log("This button was presses")
-  }
   audioPlay=(e)=>{
-    console.log(e.target.id)
-    //console.log(bankOne[0].url)
-    let node=document.getElementById('display');
-    //console.log(e.key.toUpperCase());e
+    let trigger=e.target.id || e.key.toUpperCase().charCodeAt(0)
+    
+    let index=bankOne.findIndex(obj=>obj.keyCode==trigger)
     let audio;
-    switch(e.target.id || e.key.toUpperCase()){
-
-      case 'Q':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Heater-1</h1>'
-        break;
-      case 'W':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Heater-2</h1>'
-        break;
-      case 'E':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Heater-3</h1>'
-        break;
-      case 'A':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Heater-4</h1>'
-        break;
-      case 'S':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Clap</h1>'
-        break;
-      case 'D':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Open-HH</h1>'
-        break;
-      case 'Z':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Kick-n-Hat</h1>'
-        break;
-      case 'X':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Kick</h1>'
-        break;
-      case 'C':
-        audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3')
-        audio.type='audio/mp3';
-        audio.play()
-        node.innerHTML='<h1>Closed-HH</h1>'
-        break;
-    }
-/*
-    let audio = new Audio('https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3')
+    audio = new Audio(bankOne[index].url)
     audio.type='audio/mp3';
-    audio.play()*/
+    audio.play();
+    this.setState({
+      display: bankOne[index].id
+    })
+
   }
 
 
@@ -150,70 +88,19 @@ class App extends Component {
     return (
 
 
-      <div id='drum-machine'>
-
-
-        <div className='container' >
-          
-          <div
-          className='drum-pad'
-          id='Q'
-          onClick={(e) =>this.audioPlay(e)}>Q</div>
-
-          <div
-          className='drum-pad'
-          id='W'
-          onClick={(e) =>this.audioPlay(e)}
-          >W
-          </div>
-          <div
-           className='drum-pad'
-           id='E'
-           onClick={(e) =>this.audioPlay(e)}
-           >E
-          </div>
-          <div
-          className='drum-pad'
-          id='A'
-          onClick={(e) =>this.audioPlay(e)}
-          >A
-          </div>
-          <div
-          className='drum-pad'
-          id='S'
-          onClick={(e) =>this.audioPlay(e)}
-          >S
-          </div>
-          <div
-          className='drum-pad'
-          id='D'
-          onClick={(e) =>this.audioPlay(e)}
-          >D
-          </div>
-          <div
-          className='drum-pad'
-          id='Z'
-          onClick={(e) =>this.audioPlay(e)}
-          >Z
-          </div>
-          <div
-          className='drum-pad'
-          id='X'
-          onClick={(e) =>this.audioPlay(e)}
-        >X
-          </div>
-          <div
-          className='drum-pad'
-          id='C'
-          onClick={(e) =>this.audioPlay(e)}
-          >C
-          </div>
-
-        </div>
+    <div id='drum-machine'>
         <div id="display">
-
+          <h1>{this.state.display}</h1>
         </div>
+      <div className='container' >
+        {bankOne.map(e=>
+          <div className='drum-pad' id={e.keyCode} onClick={(e)=>{this.audioPlay(e)}}
+            onKeyDown={(e)=>{this.audioPlay(e)} }>{e.keyTrigger}
+            </div>
+        )}
       </div>
+
+    </div>
     );
   }
 }
