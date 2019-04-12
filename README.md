@@ -3,7 +3,7 @@
 This project is a Drum Machine created for the **Frontend Library Certificate** on [FreeCodeCamp](https://learn.freecodecamp.org/). This takes the fundamental principles of react of handling event listeners to play Audio files based on the User's inputs. If the users press on the `drum-pad` element either through clicking or a keypress an audio sound will play. When a `drum-pad` is active the audio name will be displayed to the user.
 
 ## Live demo
-[//]: # (live demo goes here)
+[Live Demo](http://slippery-crow.surge.sh/)
 ## Skills used
  - HTML5
  - CSS3
